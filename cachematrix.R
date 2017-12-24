@@ -1,6 +1,6 @@
-## makeCacheMatrix
+## Course Data Science - R Programming - Programming Assignment 2
 ## creates a cached matrix
-## solves the matrix by calculating the inverse but first checks if inverse has not been calculated already
+## solves the matrix by calculating the inverse
 
 
 ## This function creates a special "matrix" object that can cache its inverse.
@@ -30,16 +30,19 @@ makeCacheMatrix <- function(x = matrix()) {
 ## If the inverse has already been calculated (and the matrix has not changed), 
 ## then cacheSolve should retrieve the inverse from the cache
 cacheSolve <- function(x, ...) {
-        ## Return a matrix that is the inverse of 'x'
+        ## get the existing inverse value
         s <- x$getinverse()
         ## check to see if data is cached
         if(!is.null(s)) {
+                ## output the fact that we are using cached data
                 message("getting cached data")
+                ## return cached data and quit the function at this point
                 return(s)
-                ## quit the function at this point
         }
         ## continue if function did not end
+        ## get the matrix 
         data <- x$get()
+        ## calculate the inverse of the matrix
         s <- solve(data, ...)
         ## save (set) the cached data for next use
         x$setinverse(s)
